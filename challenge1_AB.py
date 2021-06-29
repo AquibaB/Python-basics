@@ -19,8 +19,7 @@ avg_loan_cost = value_loans / num_loans
 print(f"There are {num_loans} loans in the portfolio with a total value of ${value_loans} " + 
 f"and an average price of ${avg_loan_cost:.0f}")
 
-"""Part 2: Analyze Loan Data.
-"""
+"""Part 2: Analyze Loan Data."""
 
 # Given the following loan data, you will need to calculate the present value for the loan
 loan = {
@@ -44,19 +43,8 @@ else:
     print("The loan is too expensive - do not buy")
 
 
+"""Part 3: Perform Financial Calculations."""
 
-"""Part 3: Perform Financial Calculations.
-
-Perform financial calculations using functions.
-
-1. Define a new function that will be used to calculate present value.
-    a. This function should include parameters for `future_value`, `remaining_months`, and the `annual_discount_rate`
-    b. The function should return the `present_value` for the loan.
-2. Use the function to calculate the present value of the new loan given below.
-    a. Use an `annual_discount_rate` of 0.2 for this new loan calculation.
-"""
-
-# Given the following loan data, you will need to calculate the present value for the loan
 new_loan = {
     "loan_price": 800,
     "remaining_months": 12,
@@ -73,16 +61,7 @@ present_value = calculate_present_value(new_loan["future_value"], new_loan["rema
 print(f"The present value of the loan is: {present_value}")
 
 
-"""Part 4: Conditionally filter lists of loans.
-
-In this section, you will use a loop to iterate through a series of loans and select only the inexpensive loans.
-
-1. Create a new, empty list called `inexpensive_loans`.
-2. Use a for loop to select each loan from a list of loans.
-    a. Inside the for loop, write an if-statement to determine if the loan_price is less than 500
-    b. If the loan_price is less than 500 then append that loan to the `inexpensive_loans` list.
-3. Print the list of inexpensive_loans.
-"""
+"""Part 4: Conditionally filter lists of loans."""
 
 loans = [
     {
@@ -111,14 +90,13 @@ loans = [
     },
 ]
 
-# @TODO: Create an empty list called `inexpensive_loans`
-# YOUR CODE HERE!
+inexpensive_loans = []
 
-# @TODO: Loop through all the loans and append any that cost $500 or less to the `inexpensive_loans` list
-# YOUR CODE HERE!
+for loan in loans:
+    if loan["loan_price"] <= 500:
+        inexpensive_loans.append(loan)
 
-# @TODO: Print the `inexpensive_loans` list
-# YOUR CODE HERE!
+print(inexpensive_loans)
 
 
 """Part 5: Save the results.
