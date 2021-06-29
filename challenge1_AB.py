@@ -6,22 +6,21 @@ from pathlib import Path
 
 loan_costs = [500, 600, 200, 1000, 450]
 
-# 1. Number of loans
+# Number of loans
 num_loans = len(loan_costs)
 
-# 2. Total value of the loans
+# Total value of the loans
 value_loans = sum(loan_costs)
 
-# 3. Average loan amount
+# Average loan amount
 avg_loan_cost = value_loans / num_loans
 
-#4. Print calculations
+# Print calculations
 print(f"There are {num_loans} loans in the portfolio with a total value of ${value_loans} " + 
 f"and an average price of ${avg_loan_cost:.0f}")
 
 """Part 2: Analyze Loan Data."""
 
-# Given the following loan data, you will need to calculate the present value for the loan
 loan = {
     "loan_price": 500,
     "remaining_months": 9,
@@ -29,14 +28,17 @@ loan = {
     "future_value": 1000,
 }
 
+# Extract future value and remaining months
 future_value = loan.get("future_value")
 remaining_months = loan.get("remaining_months")
 print(future_value, remaining_months)
 
+# Calculate present value
 hurdle_rate = 0.2
 present_value = future_value/(1+hurdle_rate/12)**loan.get("remaining_months")
 print(present_value)
 
+# Determine FV of the loan
 if present_value >= loan.get("loan_price"):
     print("The loan is worth buying")
 else:
@@ -52,14 +54,15 @@ new_loan = {
     "future_value": 1000,
 }
 
+# PV function
 def calculate_present_value(future_value, remaining_months, annual_discount_rate):
     present_value = future_value/(1+annual_discount_rate/12)**remaining_months
     return present_value
 
+# Calculate PV using PV function
 annual_discount_rate = 0.2
 present_value = calculate_present_value(new_loan["future_value"], new_loan["remaining_months"], annual_discount_rate)
 print(f"The present value of the loan is: {present_value}")
-
 
 """Part 4: Conditionally filter lists of loans."""
 
@@ -92,26 +95,14 @@ loans = [
 
 inexpensive_loans = []
 
+# Filter loans by inexpensive loans
 for loan in loans:
     if loan["loan_price"] <= 500:
         inexpensive_loans.append(loan)
 
 print(inexpensive_loans)
 
-
-"""Part 5: Save the results.
-
-Output this list of inexpensive loans to a csv file
-    1. Use `with open` to open a new CSV file.
-        a. Create a `csvwriter` using the `csv` library.
-        b. Use the new csvwriter to write the header variable as the first row.
-        c. Use a for loop to iterate through each loan in `inexpensive_loans`.
-            i. Use the csvwriter to write the `loan.values()` to a row in the CSV file.
-
-    Hint: Refer to the official documentation for the csv library.
-    https://docs.python.org/3/library/csv.html#writer-objects
-
-"""
+"""Part 5: Save the results."""
 
 # Set the output header
 header = ["loan_price", "remaining_months", "repayment_interval", "future_value"]
@@ -119,8 +110,7 @@ header = ["loan_price", "remaining_months", "repayment_interval", "future_value"
 # Set the output file path
 output_path = Path("inexpensive_loans.csv")
 
-# @TODO: Use the csv library and `csv.writer` to write the header row
-# and each row of `loan.values()` from the `inexpensive_loans` list.
+# Write CSV file
 with open(output_path, 'w', newline='') as csvfile:
     csvwriter = csv.writer(csvfile)
 
